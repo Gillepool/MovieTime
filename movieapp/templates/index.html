@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block body %}
+    <div class="jumbotron">
+        <h1>Movie time</h1>
+        <p>Get personalized movie recommendations based on your ratings</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Highest imdb rated movies</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for movie in movies.items %}
+        <div class="col-md-4">
+            <h3><a href="{{ url_for('.movie', id=movie.id) }}">{{ movie.title }}</a></h3>
+            <img src="{{movie.poster}}" height='150' width='100' align="middle">
+        </div>
+        {% endfor %}
+    </div>
+
+
+<div class="row">
+    <div class="col-md-4">
+{% if movies.has_next %}
+<a href="{{ url_for('.home', page=movies.next_num) }}">
+
+            <h3>Next Movies&raquo;</h3>
+       </a>
+{% else %}
+        <h3>Next Movied &raquo;</h3>
+{% endif %}
+
+
+           <div class="col-md-4">
+           </div>
+{% if movies.has_prev %}
+<a href="{{ url_for('.home', page=movies.prev_num) }}">
+            <h3>&laquo;Prev Movies</h3> </a>
+{% else %}
+        <h3>&laquo;Prev Movies<h1>
+{% endif %}
+         </div>
+    </div>
+
+
+{% endblock %}

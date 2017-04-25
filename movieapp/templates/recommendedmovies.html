@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="jumbotron">
+        <h1>Recommended movies</h1>
+        <p>A list of movies you might like based on your ratings</p>
+        <p>The more movies you rate, the better the results</p>
+        <p>(*Recommendations may be skewed based on seed data)</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>What's Included</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for movie in movies %}
+        <div class="col-md-4">
+            <h3><a href="{{ url_for('.movie', id=movie.id) }}">{{ movie.title }}</a></h3>
+            <img src="{{movie.poster}}" height='150' width='100' align="middle">
+        </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

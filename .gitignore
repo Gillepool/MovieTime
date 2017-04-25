@@ -1,0 +1,6 @@
+*.pyc
+*~
+__pychache__
+env
+/static
+.DS_Store

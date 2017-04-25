@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="jumbotron">
+        <h1>Flask Foundation</h1>
+        <p>The unopinionated flask framework</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>What's Included</h1>
+        </div>
+    </div>
+    Your query: {{query}}
+    <div class="row">
+        {% for movie in results %}
+        <div class="col-md-4">
+            <h3><a href="{{ url_for('.movie', id=movie.id) }}">{{ movie.title }}</a></h3>
+            <img src="{{movie.poster}}" height='150' width='100' align="middle">
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

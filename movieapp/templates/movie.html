@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="jumbotron">
+        <img src="{{movie.poster}}" height='150' width='100' align="right">
+        <h1>{{movie.title}}</h1>
+
+        <p><h5>{{movie.plot}}</h5></p>
+    </div>
+
+<div class="row">
+     <div class="col-md-4">
+       <h3>Plot</h3>
+            {{movie.description}}
+   </div>
+       <div class="col-md-4">
+       <h3>Genre</h3>
+            {{movie.genre}}
+   </div>
+    <div class="col-md-4">
+        <h3>Ratings</h3>
+     <p>Your rating: {{rated.rating}} </p>
+     <p>Imdb rating: {{movie.rating}}</p>
+     <div style="width: 50%">
+
+     <form role="form" action="{{ url_for('.movie', id=movie.id) }}" method="post">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.rating.label }}
+                    {% if form.rating.errors %}
+                        {% for e in form.rating.errors %}
+                            <p class="help-block">{{ e }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    {{ form.rating(class_="form-control") }}
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Rate</button>
+     </form>
+
+ </div>
+</div>
+<div class="row">
+
+
+</div>
+
+    </div>
+
+{% endblock %}
